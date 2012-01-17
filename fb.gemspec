@@ -15,20 +15,15 @@ spec = Gem::Specification.new do |s|
   s.has_rdoc = true
   s.extra_rdoc_files = ['README']
   s.rdoc_options << '--title' << 'Fb -- Ruby Firebird Extension' << '--main' << 'README' << '-x' << 'test'
+  s.rubyforge_project = "fb"
 
   s.platform = case RUBY_PLATFORM
     when /win32/ then Gem::Platform::WIN32
   else
     Gem::Platform::RUBY
   end
-  s.extensions = ['extconf.rb'] if s.platform == Gem::Platform::RUBY
-  
-  s.rubyforge_project = "fb"
 
-  s.files         = `git ls-files`.split("\n")
-  s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
-  s.executables   = `git ls-files -- bin/*`.split("\n").map{ |f| File.basename(f) }
-  s.require_paths = ["lib"]  
+  s.extensions    = ['ext/fb/extconf.rb']
+  s.files         = Dir.glob('{ext,lib}/**/*') + ['README']
+  s.require_path  = 'lib'
 end
-
-

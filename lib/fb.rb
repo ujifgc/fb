@@ -1,2 +1,2 @@
-require "fb.so"
+require "fb/fb"
 require "fb/version"
